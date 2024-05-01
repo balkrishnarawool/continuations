@@ -8,14 +8,14 @@ import java.util.concurrent.Executors;
 public class VirtualThreadScheduler {
     public static ScopedValue<VirtualThread> CURRENT_VIRTUAL_THREAD = ScopedValue.newInstance();
 
-    private final Queue<VirtualThread> queue = new ConcurrentLinkedQueue<>();
-    private final ExecutorService executor = Executors.newFixedThreadPool(3);
+    private Queue<VirtualThread> queue = new ConcurrentLinkedQueue<>();
+    private ExecutorService executor = Executors.newFixedThreadPool(10);
 
-    void schedule(VirtualThread virtualThread) {
+    public void schedule(VirtualThread virtualThread) {
         queue.add(virtualThread);
     }
 
-    void start() {
+    public void start() {
         while(true) {
             if (!queue.isEmpty()) {
                 var vt = queue.remove();
@@ -25,5 +25,4 @@ public class VirtualThreadScheduler {
             }
         }
     }
-
 }

@@ -7,32 +7,30 @@ import java.util.function.Consumer;
 
 public class GeneratorDemo {
     public static void main(String[] args) {
-        record Data(String msg) { }
-
-        var gen = new Generator<Data>(source -> {
-            source.yield(new Data("A"));
-            source.yield(new Data("B"));
-            source.yield(new Data("C"));
-            source.yield(new Data("D"));
+        // Define a Generator
+        var gen = new Generator<String>(source -> {
+            source.yield("A");
+            source.yield("B");
+            source.yield("C");
         });
 
-        while (gen.hasNext()) {
-            var t = gen.next();
-            System.out.println(t);
+        // Use Generator
+        while(gen.hasNext()) {
+            System.out.println(gen.next());
         }
     }
 
-    public static final class Generator<T> {
-        private final ContinuationScope scope;
-        private final Continuation cont;
-        private final Source source;
+    public static class Generator<T> {
+        private ContinuationScope scope;
+        private Continuation cont;
+        private Source source;
 
         public boolean hasNext() {
             return !cont.isDone();
         }
 
         public T next() {
-            var t = source.get();
+            var t = source.getValue();
             cont.run();
             return t;
         }
@@ -40,20 +38,20 @@ public class GeneratorDemo {
         public class Source {
             private T value;
 
-            private Source() { }
-
             public void yield(T t) {
                 value = t;
                 Continuation.yield(scope);
             }
 
-            public T get() { return value; }
+            public T getValue() {
+                return value;
+            }
         }
 
         public Generator(Consumer<Source> consumer) {
             scope = new ContinuationScope("Generator");
             source = new Source();
-            cont = new Continuation(scope, () -> { consumer.accept(source); });
+            cont = new Continuation(scope, () -> { consumer.accept(source);});
             cont.run();
         }
     }
