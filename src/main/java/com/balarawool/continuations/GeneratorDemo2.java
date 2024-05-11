@@ -51,7 +51,7 @@ public class GeneratorDemo2 {
                 Continuation.yield(scope);
             }
 
-            public T getValue() {
+            private T getValue() {
                 return value;
             }
 
