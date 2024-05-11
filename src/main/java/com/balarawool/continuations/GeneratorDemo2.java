@@ -5,6 +5,11 @@ import jdk.internal.vm.ContinuationScope;
 
 import java.util.function.Consumer;
 
+/**
+ * This class is slight improvement over GeneratorDemo.
+ * There the Generator proactively calculates the next value and stores it.
+ * Here Generator only calculates the next value when it is asked for.
+ */
 public class GeneratorDemo2 {
     public static void main(String[] args) {
         // Define a Generator
@@ -19,7 +24,7 @@ public class GeneratorDemo2 {
 
         // Use Generator
         while(gen.hasNext()) {
-            System.out.println("Getting value...");
+            System.out.println("Getting next value...");
             System.out.println(gen.next());
         }
     }
