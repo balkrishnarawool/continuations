@@ -11,12 +11,8 @@ public class VirtualThreadScheduler {
     private Queue<VirtualThread> queue = new ConcurrentLinkedQueue<>();
     private ExecutorService executor = Executors.newFixedThreadPool(10);
 
-    public void schedule(VirtualThread virtualThread) {
-        queue.add(virtualThread);
-    }
-
     public void start() {
-        while(true) {
+        while (true) {
             if (!queue.isEmpty()) {
                 var vt = queue.remove();
                 executor.submit(() ->
@@ -24,5 +20,9 @@ public class VirtualThreadScheduler {
                                 .run(vt::run));
             }
         }
+    }
+
+    public void schedule(VirtualThread vt) {
+        queue.add(vt);
     }
 }

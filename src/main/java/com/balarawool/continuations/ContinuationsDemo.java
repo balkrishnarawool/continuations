@@ -5,23 +5,12 @@ import jdk.internal.vm.ContinuationScope;
 
 public class ContinuationsDemo {
     public static void main(String[] args) {
-        var runnable = getRunnable();
-        runnable.run();
-
         var cont = getContinuation();
         cont.run();
+        System.out.println("Do something");
         cont.run();
+        System.out.println("Do something else");
         cont.run();
-        cont.run();
-    }
-
-    private static Runnable getRunnable() {
-        Runnable runnable = () -> {
-            System.out.println("A");
-            System.out.println("B");
-            System.out.println("C");
-        };
-        return runnable;
     }
 
     private static Continuation getContinuation() {
@@ -35,4 +24,14 @@ public class ContinuationsDemo {
         });
         return cont;
     }
+
+    private static Runnable getRunnable() {
+        Runnable runnable = () -> {
+            System.out.println("A");
+            System.out.println("B");
+            System.out.println("C");
+        };
+        return runnable;
+    }
+
 }

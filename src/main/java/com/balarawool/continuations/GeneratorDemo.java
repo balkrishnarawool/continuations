@@ -7,17 +7,15 @@ import java.util.function.Consumer;
 
 public class GeneratorDemo {
     public static void main(String[] args) {
-        // Define a Generator
-        var gen = new Generator<String>(source -> {
+        var generator = new Generator<String>(source -> {
             source.yield("A");
             source.yield("B");
             source.yield("C");
         });
 
-        // Use Generator
-        while(gen.hasNext()) {
-            System.out.println(gen.next());
-//            System.out.println("Do something else");
+        while (generator.hasNext()) {
+            System.out.println(generator.next());
+            System.out.println("Do something ok");
         }
     }
 
@@ -44,7 +42,7 @@ public class GeneratorDemo {
                 Continuation.yield(scope);
             }
 
-            public T getValue() {
+            private T getValue() {
                 return value;
             }
         }
@@ -52,8 +50,9 @@ public class GeneratorDemo {
         public Generator(Consumer<Source> consumer) {
             scope = new ContinuationScope("Generator");
             source = new Source();
-            cont = new Continuation(scope, () -> { consumer.accept(source); } );
+            cont = new Continuation(scope, () -> { consumer.accept(source); });
             cont.run();
         }
     }
+
 }

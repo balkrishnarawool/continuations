@@ -5,7 +5,7 @@ public class Demo {
     public static void main(String[] args) {
         new Thread(SCHEDULER::start).start();
 
-//        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 1000; i++) {
             var vt1 = new VirtualThread(() -> {
                 System.out.println("1.1");
                 System.out.println("1.2");
@@ -13,6 +13,7 @@ public class Demo {
                 System.out.println("1.3");
                 System.out.println("1.4");
             });
+
             var vt2 = new VirtualThread(() -> {
                 System.out.println("2.1");
                 System.out.println("2.2");
@@ -24,5 +25,5 @@ public class Demo {
             SCHEDULER.schedule(vt1);
             SCHEDULER.schedule(vt2);
         }
-//    }
+    }
 }
