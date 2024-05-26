@@ -9,7 +9,6 @@ public class ContinuationsDemo {
         cont.run();
         System.out.println("Do something");
         cont.run();
-        System.out.println("Do something else");
         cont.run();
     }
 

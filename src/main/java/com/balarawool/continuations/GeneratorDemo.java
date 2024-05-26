@@ -15,7 +15,7 @@ public class GeneratorDemo {
 
         while (generator.hasNext()) {
             System.out.println(generator.next());
-            System.out.println("Do something ok");
+            System.out.println("Do something");
         }
     }
 
@@ -54,5 +54,4 @@ public class GeneratorDemo {
             cont.run();
         }
     }
-
 }
