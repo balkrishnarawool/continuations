@@ -13,7 +13,7 @@ public class WaitingOperation {
 
     public static void perform(String name, int duration) {
         var virtualThread = CURRENT_VIRTUAL_THREAD.get();
-        System.out.println(STR."Waiting for \{name} for \{duration} seconds");
+        System.out.println("Waiting for "+name+" for "+duration+" seconds");
 
         var timer = new Timer();
         timer.schedule(new TimerTask() {

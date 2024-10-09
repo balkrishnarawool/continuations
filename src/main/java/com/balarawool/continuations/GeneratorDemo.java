@@ -50,7 +50,7 @@ public class GeneratorDemo {
         public Generator(Consumer<Source> consumer) {
             scope = new ContinuationScope("Generator");
             source = new Source();
-            cont = new Continuation(scope, () -> { consumer.accept(source); });
+            cont = new Continuation(scope, () -> consumer.accept(source));
             cont.run();
         }
     }

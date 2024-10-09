@@ -18,7 +18,7 @@ public class VirtualThread {
     }
 
     public void run() {
-        System.out.println(STR."VirtualThread #\{id} is running on \{Thread.currentThread()}");
+        System.out.println("VirtualThread "+id+" is running on "+Thread.currentThread());
         cont.run();
     }
 }

@@ -5,6 +5,7 @@ public class Demo {
 
     public static void main(String[] args) {
         for (int i = 0; i < 1000; i++) {
+
             Runnable r1 = () -> {
                 System.out.println("1.1");
                 System.out.println("1.2");
@@ -21,6 +22,7 @@ public class Demo {
             };
             SCHEDULER.schedule(r1);
             SCHEDULER.schedule(r2);
+
         }
     }
 }
