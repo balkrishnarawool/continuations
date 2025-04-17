@@ -7,5 +7,5 @@ If you have questions, suggestions to improve or any other feedback, please reac
 
 ## Prerequisites
 Make sure 
-- you use JDK 22 or higher
+- you use JDK 24 or higher
 - you compile and run these classes with these VM arguments: `--enable-preview --add-exports java.base/jdk.internal.vm=ALL-UNNAMED`
